@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { @apply bg-ink text-zinc-200 font-sans antialiased overflow-x-hidden; }
+  :focus-visible { @apply outline outline-2 outline-offset-2 outline-accent; }
+}
+
+@layer components {
+  .glass { @apply rounded-2xl border border-line bg-white/[0.03] backdrop-blur-sm; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition duration-200; }
+  .btn-primary { @apply btn bg-accent text-ink hover:bg-white; }
+  .btn-ghost { @apply btn border border-line text-zinc-100 hover:border-accent/60 hover:bg-white/5; }
+  .tag { @apply rounded-md border border-line bg-white/5 px-2 py-0.5 font-mono text-xs text-zinc-300; }
+  .learning-tag { @apply rounded-md border border-violet/40 bg-violet/10 px-2 py-0.5 font-mono text-xs text-violet; }
+}
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+@keyframes blink { 50% { opacity: 0; } }
+.cursor { animation: blink 1s steps(1) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .cursor { animation: none; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
